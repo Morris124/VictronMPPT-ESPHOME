@@ -15,8 +15,13 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
+ manual_ip:
+   static_ip: 192.168.188.124
+   gateway: 192.168.188.1
+   subnet: 255.255.255.0
+
 ota:
-# api:
+api:
 
 logger:
   baud_rate: 0
@@ -24,8 +29,6 @@ logger:
 
 mqtt:
   broker: !secret mqtt_host
-  username: !secret mqtt_username
-  password: !secret mqtt_password
   id: mqtt_client
 
 uart:
@@ -75,6 +78,8 @@ sensor:
 text_sensor:
   - platform: victron
     victron_id: victron0
+    model_description:
+      name: "${name} model description"
     charging_mode:
       name: "${name} charging mode"
     error:
