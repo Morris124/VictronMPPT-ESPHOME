@@ -1,13 +1,15 @@
 substitutions:
-  name: victron-mppt
+  name: victron-mppt-esp32
   external_components_source: github://KinDR007/VictronMPPT-ESPHOME@main
 
 
 esphome:
   name: ${name}
-  platform: ESP8266
-  board: d1_mini
 
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
 external_components:
   - source: ${external_components_source}
     refresh: 0s
@@ -17,15 +19,14 @@ wifi:
   password: !secret wifi_password
 
   manual_ip:
-   static_ip: 192.168.188.124
+   static_ip: 192.168.188.34
    gateway: 192.168.188.1
    subnet: 255.255.255.0
 ota:
 api:
 
 logger:
-  baud_rate: 0
-  esp8266_store_log_strings_in_flash: false
+
 
 mqtt:
   broker: !secret mqtt_host
@@ -33,8 +34,8 @@ mqtt:
 
 uart:
   id: uart_0
-  tx_pin: D8  # Not connected! The communication is read-only
-  rx_pin: D7  # Connect this this GPIO and GND to the MPPT charger
+  tx_pin: GPIO16  # Not connected! The communication is read-only
+  rx_pin: GPIO17  # Connect this this GPIO and GND to the MPPT charger
   baud_rate: 19200
   rx_buffer_size: 256
 
