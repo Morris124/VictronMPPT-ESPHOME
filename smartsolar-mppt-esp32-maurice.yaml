@@ -22,15 +22,22 @@ wifi:
    static_ip: 192.168.178.102
    gateway: 192.168.178.1
    subnet: 255.255.255.0
+
+web_server:
+  port: 80
+
+
 ota:
-api:
 
 logger:
 
 
+
 mqtt:
   broker: !secret mqtt_host
-  id: mqtt_client
+  port: 1884
+  username: Maurice
+  password: !secret mqtt_password
 
 uart:
   id: uart_0
